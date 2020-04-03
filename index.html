@@ -1,30 +1,101 @@
 <html>
 	<head>
-		<link rel="apple-touch-icon" sizes="57x57" href="/pwd/images/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/pwd/images/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/pwd/images/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/pwd/images/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/pwd/images/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/pwd/images/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/pwd/images/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/pwd/images/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/pwd/images/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="/pwd/images/android-icon-192x192.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/pwd/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="/pwd/images/favicon-96x96.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/pwd/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 		<link rel="manifest" href="manifest.json">
 		<link rel="shortcut icon" href="favicon.ico"></link>
 		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="/pwd/images/ms-icon-144x144.png">
+		<meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
 		<meta http-equiv="cache-control" content="no-cache"></meta>
         <meta http-equiv="pragma" content="no-cache"></meta>
         <meta http-equiv="expires" content="0"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>PWD Benefits Calculator</title>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/semantic.min.js"></script>		
+		<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
 	</head>
 	<body>
-		<h1>Hello World!</h1>
+		<div class="ui container">
+			<div class="ui top attached tabular menu">
+			  <a class="item active" data-tab="first">Restaurants/Hotels/Medicines</a>
+			  <a class="item" data-tab="second">Groceries</a>
+			</div>
+			<div class="ui bottom attached tab segment active" data-tab="first">
+				<div class="ui segment">
+					<div class="ui form">
+						<div class="two fields">
+							<div class="field">
+								<label>Input Amount Billed</label>
+								<input placeholder="0.00" id="amtRestoBilled" type="text">
+								<p />
+								<div class="ui toggle checkbox">
+									<input type="checkbox" id="novat" tabindex="0" class="hidden">
+									<label>VAT Not Included In Amount Billed</label>
+								</div>							
+							</div>
+							<div class="field">
+								<label>Results</label>
+								<div class="ui two column grid">
+									<div class="row">
+										<div class="column">
+											<label>VAT Discount:</label>
+										</div>
+										<div class="column">
+											<input placeholder="0.00" disabled id="vatDiscount">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">
+											<label>20% Discount:</label>
+										</div>
+										<div class="column">
+											<input placeholder="0.00" disabled id="twentyDiscount">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">
+											<label>Total Discount:</label>
+										</div>
+										<div class="column">
+											<input placeholder="0.00" disabled id="totalDiscount">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">
+											<label>Amount To Pay:</label>
+										</div>
+										<div class="column">
+											<input placeholder="0.00" disabled id="amountPayable">
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<button class="ui blue basic button" id="btnRestoCompute">Compute</button>
+				</div>  
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="second">
+			  Second
+			</div>
+		</div>
 	</body>
-	<script src="/pwd/js/scripts.js"></script>
+	<script src="js/scripts.js"></script>
 </html>
