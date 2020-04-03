@@ -1,6 +1,6 @@
 var cacheName = 'pwa-for-pwd';
 var filesToCache = [
-  '/',
+  '/pwd',
   '/pwd/index.html',
   '/pwd/js/scripts.js'
 ];
