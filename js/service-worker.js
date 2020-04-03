@@ -1,8 +1,8 @@
 var cacheName = 'pwa-for-pwd';
 var filesToCache = [
   '/',
-  '/pwa/index.html',
-  '/pwa/js/scripts.js'
+  '/pwd/index.html',
+  '/pwd/js/scripts.js'
 ];
 
 /* Start the service worker and cache all of the app's content */

@@ -2,7 +2,7 @@ window.onload = function()
 {
 	if ('serviceWorker' in navigator) 
 	{
-		navigator.serviceWorker.register('/pwa/js/service-worker.js')
+		navigator.serviceWorker.register('/pwd/js/service-worker.js')
 			.then(function(registration) 
 			{
 				console.log('Registration successful, scope is:', registration.scope);
