@@ -51,7 +51,7 @@
 									<div class="row">
 										<div class="column">										
 											<label>Input Amount Billed</label>
-											<input placeholder="0.00" id="amtRestoBilled" type="text">
+											<input placeholder="0.00" id="amtRestoBilled" type="number">
 										</div>
 									</div>
 									<div class="row">
@@ -70,16 +70,16 @@
 											</div>		
 										</div>
 									</div>
-									<div class="row restaurant">
+									<div class="row restaurant" style="display: none">
 										<div class="column">										
-											<label>Input Number of PWD Dining (for Restaurants Only)</label>
-											<input placeholder="1" id="numberPwdDining" type="text" value="1">
+											<label>Input Number of PWD/Senior Dining (for Restaurants Only)</label>
+											<input placeholder="1" id="numberPwdDining" type="number" value="1">
 										</div>
 									</div>								
-									<div class="row restaurant">
+									<div class="row restaurant" style="display: none">
 										<div class="column">										
-											<label>Input Number of Non PWD Dining (for Restaurants Only)</label>
-											<input placeholder="0" id="numberNonPwdDining" type="text" value="0">
+											<label>Input Number of Non PWD/Senior Dining (for Restaurants Only)</label>
+											<input placeholder="0" id="numberNonPwdDining" type="number" value="0">
 										</div>
 									</div>
 								</div>
@@ -178,7 +178,7 @@
 									<div class="row">
 										<div class="column">										
 											<label>Input Amount Billed</label>
-											<input placeholder="0.00" id="amtGroceryBilled" type="text">
+											<input placeholder="0.00" id="amtGroceryBilled" type="number">
 										</div>
 									</div>
 									<div class="row">
@@ -192,7 +192,7 @@
 									<div class="row">
 										<div class="column">										
 											<label>Input Remaining Amount For The Week</label>
-											<input placeholder="1300.00" id="amtRemaining" type="text" value="1300.00">
+											<input placeholder="1300.00" id="amtRemaining" type="number" value="1300.00">
 										</div>
 									</div>
 								</div>
@@ -236,7 +236,7 @@
 									Prime commodities include fresh fruits; flour; dried processed and canned pork; beef and poultry meat; dairy products not falling under basic necessities; noodles; onions; garlic; vinegar; patis; soy sauce; toilet soap; fertilizer; pesticides; herbicides; poultry; swine and cattle feeds; veterinary products for poultry, swine and cattle; paper; school supplies; nipa shingles; sawali; cement; clinker; GI sheets; hollow blocks; plywood; plyboard; construction nails; batteries; electrical supplies; light bulbs; steel wire; and all drugs not classified as essential drugs by the Department of Health.
 								</li>
 								<li>
-									<div class="red">No VAT discount on groceries covered above exempt if they are agricultural and marine food products in their original state pursuant to Section 109 of the Tax Code</div>
+									<div class="red">No VAT discount on groceries covered above except if they are agricultural and marine food products in their original state pursuant to Section 109 of the Tax Code</div>
 								</li>
 								<li>
 									The 5% discount coverage is limited to PhP 1,300.00 per week as recorded in your purchase booklet
@@ -259,7 +259,7 @@
 						</a>
 						<div class="content">
 							<div class="description">							
-								<h3>PWD Benefits Discount Calculator</h3>
+								<h3>PWD and Senior Citizen Discount Calculator</h3>
 							
 								<p>
 									I originally created this app in order to help Persons with Disabilities (PWDs) in the Philippines compute their statutory discounts anytime anywhere online.  Since the computation of benefit is the same as that for senior citizens then they can use this as well.
@@ -302,7 +302,7 @@
 				</div>
 			</div>
 			<div class="ui segment">
-				Copyright &copy; 2020 by <a href="https://www.nestor.ml">Nestor M. Lim</a>.  Version 1.0.0
+				Copyright &copy; 2020 by <a href="https://www.nestor.ml">Nestor M. Lim</a>.  Version 1.1.0
 			</div>
 		</div>
 	</body>

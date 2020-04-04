@@ -93,12 +93,12 @@ window.onload = function()
 			
 			if (isInRestorant)
 			{
-				$('.restaurant').css("visibility", "visible");
+				$('.restaurant').css("display", "inline");
 				
 				return;
 			}
 			
-			$('.restaurant').css("visibility", "hidden");
+			$('.restaurant').css("display", "none");
 		}
 	);		
 			
