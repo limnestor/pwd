@@ -1,5 +1,7 @@
 window.onload = function() 
 {
+	var flGroceryLimit = 1300;
+	
 	if ('serviceWorker' in navigator) 
 	{
 		navigator.serviceWorker.register('/pwd/service-worker.js')
@@ -15,13 +17,90 @@ window.onload = function()
 	
 	var popupRestoAmount = $('#amtRestoBilled').popup
 		({
-			content : 'Please enter a correct amount.'
+			content : 'Please enter a correct amount here.'
 		});
 	
 	var popupGroceryAmount = $('#amtGroceryBilled').popup
 		({
-			content : 'Please enter a correct amount.'
+			content : 'Please enter a correct amount here.'
 		});
+		
+	var popupAmountRemaining = $('#amtRemaining').popup
+		({
+			content : 'Please enter a correct amount here.  The remaining amount for the week should be in your purchase booklet of ' + flGroceryLimit + ' pesos if not yet used for this week.'
+		});
+		
+	var popupNumberPwd = $('#numberPwdDining').popup
+		({
+			content : 'Please enter a correct number here.'
+		});
+	
+	var popupNumberNonPwd = $('#numberNonPwdDining').popup
+		({
+			content : 'Please enter a correct number here.'
+		});
+		
+	function clearRestorantResults()
+	{
+		$('#vatDiscount').val("0.00");
+		$('#twentyDiscount').val("0.00");
+		$('#totalDiscount').val("0.00");
+		$('#amountPayable').val("0.00");
+	}
+		
+	popupRestoAmount.raiseError = 
+		function()
+		{
+			popupRestoAmount.popup('show');
+			clearRestorantResults();
+		}
+		
+	popupNumberPwd.raiseError = 
+		function()
+		{
+			popupNumberPwd.popup('show');
+			clearRestorantResults();
+		}	
+	
+	popupNumberNonPwd.raiseError = 
+		function()
+		{
+			popupNumberNonPwd.popup('show');
+			clearRestorantResults()
+		}	
+
+	popupGroceryAmount.raiseError = 
+		function()
+		{
+			popupGroceryAmount.popup('show');
+			$('#fiveDiscount').val("0.00");
+			$('#amountGroceryPayable').val("0.00");	
+		}	
+	
+	popupAmountRemaining.raiseError = 
+		function()
+		{
+			popupAmountRemaining.popup('show');
+			$('#fiveDiscount').val("0.00");
+			$('#amountGroceryPayable').val("0.00");	
+		}	
+
+	$("#inresto").change
+	(
+		function()
+		{
+			var isInRestorant = $("#inresto").prop("checked");
+			
+			if (isInRestorant)
+			{
+				$('.restaurant').css("visibility", "visible");
+				
+				return;
+			}
+			
+			$('.restaurant').css("visibility", "hidden");
+		}
+	);		
 			
 	$("#btnRestoCompute").click
 	(
@@ -31,18 +110,75 @@ window.onload = function()
 			
 			if (isNaN(stAmount))
 			{
-				popupRestoAmount.popup('show');
-				$('#vatDiscount').val("0.00");
-				$('#twentyDiscount').val("0.00");
-				$('#totalDiscount').val("0.00");
-				$('#amountPayable').val("0.00");
+				popupRestoAmount.raiseError();
 				
 				return;
 			}
 			
-			var isNoVAT = $("#novat").prop("checked");
-
 			var flAmount = forceParseFloat(stAmount);
+			
+			if (flAmount < 0)
+			{
+				popupRestoAmount.raiseError();
+				
+				return;
+			}
+			
+			var isInRestorant = $("#inresto").prop("checked");
+			
+			var flNonPwdAmount = 0;
+			
+			if (isInRestorant)
+			{
+				var stNumberOfPwdDining = $("#numberPwdDining").val().replace(/,/g, '');
+				var stNumberOfNonPwdDining = $("#numberNonPwdDining").val().replace(/,/g, '');
+				
+				if ((stNumberOfPwdDining.indexOf(".") > -1) || isNaN(stNumberOfPwdDining))
+				{
+					popupNumberPwd.raiseError();
+					
+					return;
+				}
+				
+				if ((stNumberOfNonPwdDining.indexOf(".") > -1) || isNaN(stNumberOfNonPwdDining))
+				{
+					popupNumberNonPwd.raiseError();
+					
+					return;
+				}
+				
+				var intNumberOfPwdDining = parseInt(stNumberOfPwdDining);
+				var intNumberOfNonPwdDining = parseInt(stNumberOfNonPwdDining);
+				
+				if (intNumberOfPwdDining < 0)
+				{
+					popupNumberPwd.raiseError();
+					
+					return;
+				}
+				
+				if (intNumberOfNonPwdDining < 0)
+				{
+					popupNumberNonPwd.raiseError();
+					
+					return;
+				}
+				
+				if ((intNumberOfPwdDining + intNumberOfNonPwdDining) == 0)
+				{
+					popupNumberPwd.raiseError();
+					
+					return;
+				}
+				
+				var flPwdAmount = flAmount * (intNumberOfPwdDining / (intNumberOfPwdDining + intNumberOfNonPwdDining));
+				
+				flNonPwdAmount = flAmount - flPwdAmount
+				
+				flAmount = flPwdAmount;
+			}
+
+			var isNoVAT = $("#novat").prop("checked");
 			
 			var flVATDiscount = 0;
 			
@@ -55,7 +191,7 @@ window.onload = function()
 			
 			var flTotalDiscount = roundTo2(flVATDiscount + fl20Discount);
 			
-			var flAmountDue = roundTo2((flAmount - flVATDiscount - fl20Discount));
+			var flAmountDue = roundTo2((flAmount - flVATDiscount - fl20Discount + flNonPwdAmount));
 
 			$('#vatDiscount').val(flVATDiscount.toFixed(2));
 			$('#twentyDiscount').val(fl20Discount.toFixed(2));
@@ -68,13 +204,11 @@ window.onload = function()
 	(
 		function() 
 		{
-			var stAmount = $("#amtGroceryBilled").val();
+			var stAmount = $("#amtGroceryBilled").val().replace(/,/g, '');
 			
 			if (isNaN(stAmount))
 			{
-				popupGroceryAmount.popup('show');
-				$('#fiveDiscount').val("0.00");
-				$('#amountGroceryPayable').val("0.00");
+				popupGroceryAmount.raiseError();
 				
 				return;
 			}
@@ -82,6 +216,40 @@ window.onload = function()
 			var isNoVAT = $("#novatgrocery").prop("checked");
 			
 			var flAmount = forceParseFloat(stAmount);
+			
+			if (flAmount < 0)
+			{
+				popupGroceryAmount.raiseError();
+				
+				return;
+			}
+			
+			var stAmountRemaining = $("#amtRemaining").val().replace(/,/g, '');
+			
+			if (isNaN(stAmountRemaining))
+			{
+				popupAmountRemaining.raiseError();
+				
+				return;
+			}
+			
+			var flAmountRemaining = forceParseFloat(stAmountRemaining);
+			
+			if ((flAmountRemaining < 0) || (flAmountRemaining > flGroceryLimit))
+			{
+				popupAmountRemaining.raiseError();
+				
+				return;
+			}
+			
+			var flExcessAmount = 0;
+			
+			if (flAmount > flAmountRemaining)
+			{
+				flExcessAmount = flAmount - flAmountRemaining;
+				
+				flAmount = flAmountRemaining;
+			}
 			
 			var flVATRate = 1.12;
 			
@@ -92,7 +260,7 @@ window.onload = function()
 			
 			var fl5Discount = roundTo2(flAmount / flVATRate * 0.05);
 			
-			var flAmountDue = roundTo2((flAmount - fl5Discount));
+			var flAmountDue = roundTo2(flAmount - fl5Discount + flExcessAmount);
 
 			$('#fiveDiscount').val(fl5Discount.toFixed(2));
 			$('#amountGroceryPayable').val(flAmountDue.toFixed(2));

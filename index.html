@@ -38,22 +38,51 @@
 			</h1>
 		
 			<div class="ui top attached tabular menu">
-			  <a class="item active" data-tab="first">Restaurants/Hotels/Medicines</a>
+			  <a class="item active" data-tab="first">Restaurant/Medicine</a>
 			  <a class="item" data-tab="second">Groceries</a>
-			  <a class="item" data-tab="third">About The App</a>
+			  <a class="item" data-tab="third">About</a>
 			</div>
 			<div class="ui bottom attached tab segment active" data-tab="first">
 				<div class="ui segment">
 					<div class="ui form">
 						<div class="two fields">
 							<div class="field">
-								<label>Input Amount Billed</label>
-								<input placeholder="0.00" id="amtRestoBilled" type="text">
-								<p />
-								<div class="ui toggle checkbox">
-									<input type="checkbox" id="novat" tabindex="0" class="hidden">
-									<label>VAT Not Included In Amount Billed</label>
-								</div>							
+								<div class="ui one column grid">
+									<div class="row">
+										<div class="column">										
+											<label>Input Amount Billed</label>
+											<input placeholder="0.00" id="amtRestoBilled" type="text">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">										
+											<div class="ui toggle checkbox">
+												<input type="checkbox" id="novat" tabindex="0" class="hidden">
+												<label>VAT Not Included In Amount Billed</label>
+											</div>		
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">										
+											<div class="ui toggle checkbox">
+												<input type="checkbox" id="inresto" tabindex="0" class="hidden">
+												<label>In a Restaurant?</label>
+											</div>		
+										</div>
+									</div>
+									<div class="row restaurant">
+										<div class="column">										
+											<label>Input Number of PWD Dining (for Restaurants Only)</label>
+											<input placeholder="1" id="numberPwdDining" type="text" value="1">
+										</div>
+									</div>								
+									<div class="row restaurant">
+										<div class="column">										
+											<label>Input Number of Non PWD Dining (for Restaurants Only)</label>
+											<input placeholder="0" id="numberNonPwdDining" type="text" value="0">
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="field">
 								<label>Results</label>
@@ -92,11 +121,11 @@
 									</div>									
 								</div>
 							</div>
-						</div>
+						</div>			
 					</div>
 					
-					<button class="ui blue basic button" id="btnRestoCompute">Compute</button>
-					
+					<button class="ui blue basic button" id="btnRestoCompute">Compute</button>					
+			
 					<div class="ui message">
 						<div class="header">
 							Coverage
@@ -142,15 +171,28 @@
 					<div class="ui form">
 						<div class="two fields">
 							<div class="field">
-								<label>Input Amount Billed</label>
-								<input placeholder="0.00" id="amtGroceryBilled" type="text">	
-							
-								<p />
-								
-								<div class="ui toggle checkbox">
-									<input type="checkbox" id="novatgrocery" tabindex="0" class="hidden">
-									<label>VAT Not Included In Amount Billed</label>
-								</div>								
+								<div class="ui one column grid">
+									<div class="row">
+										<div class="column">										
+											<label>Input Amount Billed</label>
+											<input placeholder="0.00" id="amtGroceryBilled" type="text">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">										
+											<div class="ui toggle checkbox">
+												<input type="checkbox" id="novatgrocery" tabindex="0" class="hidden">
+												<label>VAT Not Included In Amount Billed</label>
+											</div>								
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">										
+											<label>Input Remaining Amount For The Week</label>
+											<input placeholder="1300.00" id="amtRemaining" type="text" value="1300.00">
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="field">
 								<label>Results</label>
@@ -226,6 +268,8 @@
 						</div>
 					</div>
 					
+					<div class="ui divider"></div>
+					
 					<div class="item">
 						<a class="ui small image">
 							<img src="images/pwa.png">
@@ -241,6 +285,8 @@
 						</div>
 					</div>
 					
+					<div class="ui divider"></div>
+					
 					<div class="item">
 						<div class="content">
 							<div class="description">							
@@ -253,7 +299,7 @@
 				</div>
 			</div>
 			<div class="ui segment">
-				Copyright &copy; 2020 by <a href="https://www.nestor.ml">Nestor M Lim</a>.  Version 1.0.0
+				Copyright &copy; 2020 by <a href="https://www.nestor.ml">Nestor M. Lim</a>.  Version 1.0.0
 			</div>
 		</div>
 	</body>
