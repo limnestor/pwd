@@ -23,17 +23,24 @@
         <meta http-equiv="expires" content="0"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<title>PWD Benefits Calculator</title>
+		<title>PWD Benefits Discount Calculator</title>
 		
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="js/semantic.min.js"></script>		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
 	</head>
 	<body>
 		<div class="ui container">
+		
+			<h1 class="ui header smallcaps">
+				PWD Benefits Discount Calculator
+			</h1>
+		
 			<div class="ui top attached tabular menu">
 			  <a class="item active" data-tab="first">Restaurants/Hotels/Medicines</a>
 			  <a class="item" data-tab="second">Groceries</a>
+			  <a class="item" data-tab="third">About The App</a>
 			</div>
 			<div class="ui bottom attached tab segment active" data-tab="first">
 				<div class="ui segment">
@@ -89,10 +96,164 @@
 					</div>
 					
 					<button class="ui blue basic button" id="btnRestoCompute">Compute</button>
+					
+					<div class="ui message">
+						<div class="header">
+							Coverage
+						</div>
+						<p>
+							<ul>
+								<li>
+									On the fees and charges relative to the utilization of all services in hotels and similar lodging establishments; restaurants and recreation centers
+								</li>
+								<li>
+									On admission fees charged by theaters, cinema houses, concert halls, circuses, carnivals and other similar places of culture, leisure and amusement
+								</li>
+								<li>
+									On the purchase of medicines in all drugstores
+								</li>
+								<li>
+									On medical and dental services including diagnostic and laboratory fees such as, but not limited to, x-rays, computerized tomography scans and blood tests, and professional fees of attending doctors in all government facilities
+								</li>
+								<li>
+									On medical and dental services including diagnostic and laboratory fees, and professional fees of attending doctors in all private hospitals and medical facilities
+								</li>
+								<li>
+									On fare for domestic air and sea travel
+								</li>
+								<li>
+									On actual fare for land transportation travel such as, but not limited to, public utility buses or jeepneys (PUBs/PUJs), taxis, asian utility vehicles (AUVs), shuttle services and public railways, including light Rail Transit (LRT), Metro Rail Transit (MRT) and Philippine National Railways (PNR); 
+								</li>
+								<li>
+									On funeral and burial services for the death of the PWD
+								</li>
+							</ul>
+						</p>
+						<p>
+							<a href="https://www.officialgazette.gov.ph/2016/03/23/republic-act-no-10754/">
+								Source: RA 10754 – An Act Expanding The Benefits And Priviledges Of Persons With Disability (PWD)
+							</a>
+						</p>
+					</div>
 				</div>  
 			</div>
 			<div class="ui bottom attached tab segment" data-tab="second">
-			  Second
+				<div class="ui segment">
+					<div class="ui form">
+						<div class="two fields">
+							<div class="field">
+								<label>Input Amount Billed</label>
+								<input placeholder="0.00" id="amtGroceryBilled" type="text">	
+							
+								<p />
+								
+								<div class="ui toggle checkbox">
+									<input type="checkbox" id="novatgrocery" tabindex="0" class="hidden">
+									<label>VAT Not Included In Amount Billed</label>
+								</div>								
+							</div>
+							<div class="field">
+								<label>Results</label>
+								<div class="ui two column grid">
+									<div class="row">
+										<div class="column">
+											<label>5% Discount:</label>
+										</div>
+										<div class="column">
+											<input placeholder="0.00" disabled id="fiveDiscount">
+										</div>
+									</div>
+									<div class="row">
+										<div class="column">
+											<label>Amount To Pay:</label>
+										</div>
+										<div class="column">
+											<input placeholder="0.00" disabled id="amountGroceryPayable">
+										</div>
+									</div>									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<button class="ui blue basic button" id="btnGroceryCompute">Compute</button>
+					
+					<div class="ui message">
+						<div class="header">
+							Coverage
+						</div>
+						<p>
+							<ul>
+								<li>
+									Basic necessities includes: rice; corn; bread; fresh, dried and canned fish and other marine products, fresh pork, beef and poultry meal; fresh eggs; fresh and processed milk; fresh vegetables; root crops; coffee; sugar; cooking oil; salt; laundry soap; detergents; firewood; charcoal; candles; and drugs classified as essential by the Department of Health;
+								</li>
+								<li>
+									Prime commodities include fresh fruits; flour; dried processed and canned pork; beef and poultry meat; dairy products not falling under basic necessities; noodles; onions; garlic; vinegar; patis; soy sauce; toilet soap; fertilizer; pesticides; herbicides; poultry; swine and cattle feeds; veterinary products for poultry, swine and cattle; paper; school supplies; nipa shingles; sawali; cement; clinker; GI sheets; hollow blocks; plywood; plyboard; construction nails; batteries; electrical supplies; light bulbs; steel wire; and all drugs not classified as essential drugs by the Department of Health.
+								</li>
+								<li>
+									<div class="red">No VAT discount on groceries covered above exempt if they are agricultural and marine food products in their original state pursuant to Section 109 of the Tax Code</div>
+								</li>
+								<li>
+									The 5% discount coverage is limited to PhP 1,300.00 per week as recorded in your purchase booklet
+								</li>
+							</ul>
+						</p>
+						<p>
+							<a href="https://www.officialgazette.gov.ph/1992/05/27/republic-act-no-7581/">
+								Source: RA 7581 – The Price Act
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="third">
+				<div class="ui items">
+					<div class="item">
+						<a class="ui small image">
+							<img src="images/handicap-512.png">
+						</a>
+						<div class="content">
+							<div class="description">							
+								<h3>PWD Benefits Discount Calculator</h3>
+							
+								<p>
+									I created this app in order to help Persons with Disabilities (PWDs) in the Philippines compute their statutory discounts anytime anywhere online.  
+								</p>
+								<p>
+									To use, simply enter the amount being billed to you and specify whether or not VAT is already included in the amount billed.  The app will calculate your discount when you click on the "Compute" button.
+								</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="item">
+						<a class="ui small image">
+							<img src="images/pwa.png">
+						</a>
+						<div class="content">
+							<div class="description">							
+								<h3>PWA for PWDs</h3>
+							
+								<p>
+									This app is built using Progressive Web App (PWA) technologies and can be installed on your browser.
+								</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="item">
+						<div class="content">
+							<div class="description">							
+								<p>
+									This was built during the spare time provided by the COVID-19 quarantine in our country so please feel free to <a href="https://www.nestor.ml">contact me</a> in case of any issues or defects.  Enjoy!
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui segment">
+				Copyright &copy; 2020 by <a href="https://www.nestor.ml">Nestor M Lim</a>.  Version 1.0.0
 			</div>
 		</div>
 	</body>

@@ -5,6 +5,7 @@ var filesToCache =
 	'/pwd',
 	'/pwd/index.html',
 	'/pwd/css/semantic.min.css',
+	'/pwd/css/style.css',
 	'/pwd/js/scripts.js',
 	'/pwd/js/semantic.min.js'
 ];
@@ -20,8 +21,7 @@ self.addEventListener('install',
 					{
 						return cache.addAll(filesToCache);
 					})
-				)
-				.catch(err => console.log('Error while installing assets', err));;
+				);
 	}
 );
 
@@ -36,7 +36,6 @@ self.addEventListener('fetch',
 					{
 						return response || fetch(e.request);
 					})
-				)
-				.catch(err => console.log('Error while fetching assets', err));;
+				);
 	}
 );

@@ -13,11 +13,32 @@ window.onload = function()
 			});
 	}
 	
+	var popupRestoAmount = $('#amtRestoBilled').popup
+		({
+			content : 'Please enter a correct amount.'
+		});
+	
+	var popupGroceryAmount = $('#amtGroceryBilled').popup
+		({
+			content : 'Please enter a correct amount.'
+		});
+			
 	$("#btnRestoCompute").click
 	(
 		function() 
 		{
-			var stAmount = $("#amtRestoBilled").val();
+			var stAmount = $("#amtRestoBilled").val().replace(/,/g, '');
+			
+			if (isNaN(stAmount))
+			{
+				popupRestoAmount.popup('show');
+				$('#vatDiscount').val("0.00");
+				$('#twentyDiscount').val("0.00");
+				$('#totalDiscount').val("0.00");
+				$('#amountPayable').val("0.00");
+				
+				return;
+			}
 			
 			var isNoVAT = $("#novat").prop("checked");
 
@@ -36,12 +57,48 @@ window.onload = function()
 			
 			var flAmountDue = roundTo2((flAmount - flVATDiscount - fl20Discount));
 
-			$('#vatDiscount').val(flVATDiscount);
-			$('#twentyDiscount').val(fl20Discount);
-			$('#totalDiscount').val(flTotalDiscount);
-			$('#amountPayable').val(flAmountDue);
+			$('#vatDiscount').val(flVATDiscount.toFixed(2));
+			$('#twentyDiscount').val(fl20Discount.toFixed(2));
+			$('#totalDiscount').val(flTotalDiscount.toFixed(2));
+			$('#amountPayable').val(flAmountDue.toFixed(2));
 		}
 	);
+	
+	$("#btnGroceryCompute").click
+	(
+		function() 
+		{
+			var stAmount = $("#amtGroceryBilled").val();
+			
+			if (isNaN(stAmount))
+			{
+				popupGroceryAmount.popup('show');
+				$('#fiveDiscount').val("0.00");
+				$('#amountGroceryPayable').val("0.00");
+				
+				return;
+			}
+			
+			var isNoVAT = $("#novatgrocery").prop("checked");
+			
+			var flAmount = forceParseFloat(stAmount);
+			
+			var flVATRate = 1.12;
+			
+			if (isNoVAT)
+			{
+				flVATRate = 1;
+			}
+			
+			var fl5Discount = roundTo2(flAmount / flVATRate * 0.05);
+			
+			var flAmountDue = roundTo2((flAmount - fl5Discount));
+
+			$('#fiveDiscount').val(fl5Discount.toFixed(2));
+			$('#amountGroceryPayable').val(flAmountDue.toFixed(2));
+		}
+	);
+	
 	
 	$('.menu .item').tab();
 	$('.ui.checkbox').checkbox();
@@ -54,7 +111,7 @@ window.onload = function()
  * @return float equivalent of the string value
  * @type float
  * @author Nestor Lim
- * @version 1.0
+ * @version 1.0.0
  */
 function forceParseFloat(stValue)
 {

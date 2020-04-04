@@ -1,0 +1,21 @@
+body
+{
+	font-weight : "bolder" ! important
+}
+
+input
+{
+	text-align : right;
+	font-weight : bolder !important;
+}
+
+.red 
+{
+	color : red;
+	font-weight : bold;
+}
+
+.smallcaps 
+{
+	font-variant : small-caps !important;
+}
