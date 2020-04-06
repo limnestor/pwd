@@ -260,7 +260,9 @@ window.onload = function()
 			
 			var fl5Discount = roundTo2(flAmount / flVATRate * 0.05);
 			
-			var flAmountDue = roundTo2(flAmount - fl5Discount + flExcessAmount);
+			var flVATOfDiscount = fl5Discount * (flVATRate - 1);
+			
+			var flAmountDue = roundTo2(flAmount - fl5Discount + flExcessAmount - flVATOfDiscount);
 
 			$('#fiveDiscount').val(fl5Discount.toFixed(2));
 			$('#amountGroceryPayable').val(flAmountDue.toFixed(2));
