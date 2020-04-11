@@ -1,4 +1,5 @@
-var cacheName = 'pwa-for-pwd';
+const cacheName = 'pwa-for-pwd';
+const VERSION = '1.3.0';
 
 var filesToCache = 
 [
