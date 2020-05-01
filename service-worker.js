@@ -1,5 +1,5 @@
 const cacheName = 'pwa-for-pwd';
-const VERSION = '1.3.0';
+const VERSION = '1.3.1';
 
 var filesToCache = 
 [
@@ -8,6 +8,7 @@ var filesToCache =
 	'/pwd/css/semantic.min.css',
 	'/pwd/css/style.css',
 	'/pwd/js/scripts.js',
+	'/pwd/js/jquery-3.5.0.min.js',
 	'/pwd/js/semantic.min.js'
 ];
 
