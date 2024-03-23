@@ -1,6 +1,6 @@
 window.onload = function() 
 {
-	var flGroceryLimit = 1300;
+	var flGroceryLimit = 2500;
 	
 	if ('serviceWorker' in navigator) 
 	{
