@@ -89,7 +89,7 @@ devices that supports PWA such as Android. </p>
 <p class=MsoNormal>More details are found here on my personal blog:</p>
 
 <p class=MsoNormal><a
-href="https://blog.nestor.eu.org/2020/04/pwd-pwa-and-covid-19.html">https://blog.nestor.ml/2020/04/pwd-pwa-and-covid-19.html</a></p>
+href="https://blog.nestor.eu.org/2020/04/pwd-pwa-and-covid-19.html">https://blog.nestor.eu.org/2020/04/pwd-pwa-and-covid-19.html</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
